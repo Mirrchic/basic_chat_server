@@ -2,7 +2,6 @@ package service
 
 import (
 	"fmt"
-	"log"
 	"strings"
 )
 
@@ -12,7 +11,6 @@ func (serv Service) signedUsersRequests(username, request string) (Response, err
 	if strings.Trim(request, " ") == "" {
 		return Response{}, fmt.Errorf("empty request, write /help if you need more information")
 	}
-	log.Print("signed ", username, "  ", request)
 	reqCom := strings.Fields(request)
 	var resp = Response{
 		ResponseTo: username,
@@ -46,7 +44,6 @@ func (serv Service) signedUsersRequests(username, request string) (Response, err
 // or returns error if this user not online.
 func (serv Service) sendMessage(fromName, toName, message string) (string, error) {
 	m, ok := serv.UsersList[toName]
-	log.Print(ok, m.NameUser)
 	if !ok {
 		return "", fmt.Errorf("there is no %s user online ", toName)
 	}
@@ -77,5 +74,5 @@ func (serv Service) getUsersOnline() string {
 	return response
 }
 func (serv Service) help() string {
-	return "use the @[name] to write to the user who is online, or /users_online to see the list of online users\n"
+	return "use the @name to write to the user who is online, or /users_online to see the list of online users\n"
 }

@@ -17,7 +17,7 @@ func (serv Service) Authorization(userName string) (Response, error) {
 	}
 	var resp = Response{
 		ResponseTo: userName,
-		Response:   fmt.Sprintf("Welcom %s\n", userName),
+		Response:   fmt.Sprintf("Welcom %s\n Write /help for information\n", userName),
 	}
 	return resp, nil
 }

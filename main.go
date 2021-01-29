@@ -8,8 +8,8 @@ import (
 
 func main() {
 	var s = server.Server{
-		Addr:        ":6666",
-		IdleTimeout: 20 * time.Second,
+		Addr:        ":8080",
+		IdleTimeout: 90 * time.Second,
 	}
 	err := s.ListenAndServe()
 	if err != nil {

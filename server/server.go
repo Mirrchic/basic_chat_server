@@ -28,6 +28,9 @@ func (srv Server) ListenAndServe() error {
 	if srv.Addr == "" {
 		srv.Addr = ":8080"
 	}
+	if srv.IdleTimeout.Seconds() == 0.0 {
+		srv.IdleTimeout = (time.Minute * 2)
+	}
 	log.Printf("starting server on %v\n", srv.Addr)
 	listener, err := net.Listen("tcp", srv.Addr)
 	if err != nil {
